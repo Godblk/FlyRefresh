@@ -47,6 +47,7 @@ public class MainActivity extends AppCompatActivity implements FlyRefreshLayout.
         initDataSet();
         setContentView(R.layout.activity_main);
 
+
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayShowTitleEnabled(false);

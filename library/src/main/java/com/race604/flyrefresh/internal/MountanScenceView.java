@@ -110,38 +110,42 @@ public class MountanScenceView extends View implements IPullHeader {
         mTransMatrix.reset();
         mTransMatrix.setScale(mScaleX, mScaleY);
 
-        int offset1 = (int) (10 * factor);
-        mMount1.reset();
-        mMount1.moveTo(0, 95 + offset1);
-        mMount1.lineTo(55, 74 + offset1);
-        mMount1.lineTo(146, 104 + offset1);
-        mMount1.lineTo(227, 72 + offset1);
-        mMount1.lineTo(WIDTH, 80 + offset1);
-        mMount1.lineTo(WIDTH, HEIGHT);
-        mMount1.lineTo(0, HEIGHT);
-        mMount1.close();
-        mMount1.transform(mTransMatrix);
+//        int offset1 = (int) (10 * factor);
+//        mMount1.reset();
+//        mMount1.moveTo(0, 95 + offset1);
+//        mMount1.lineTo(55, 74 + offset1);
+//        mMount1.lineTo(146, 104 + offset1);
+//        mMount1.lineTo(227, 72 + offset1);
+//        mMount1.lineTo(WIDTH, 80 + offset1);
+//        mMount1.lineTo(WIDTH, HEIGHT);
+//        mMount1.lineTo(0, HEIGHT);
+//        mMount1.close();
+//        mMount1.transform(mTransMatrix);
 
         int offset2 = (int) (20 * factor);
+        int offset22 = (int) (60 * factor);
         mMount2.reset();
-        mMount2.moveTo(0, 103 + offset2);
-        mMount2.lineTo(67, 90 + offset2);
-        mMount2.lineTo(165, 115 + offset2);
-        mMount2.lineTo(221, 87 + offset2);
-        mMount2.lineTo(WIDTH, 100 + offset2);
+        mMount2.moveTo(0, 40 + offset2);
+
+        mMount2.cubicTo(0 , 40 + offset2,WIDTH / 2, 40 + offset22,WIDTH, 40 + offset2);
+
+
+//        mMount2.lineTo(165, 115 + offset2);
+//        mMount2.lineTo(221, 87 + offset2);
+//        mMount2.lineTo(WIDTH, 100 + offset2);
         mMount2.lineTo(WIDTH, HEIGHT);
         mMount2.lineTo(0, HEIGHT);
         mMount2.close();
         mMount2.transform(mTransMatrix);
 
-        int offset3 = (int) (30 * factor);
-        mMount3.reset();
-        mMount3.moveTo(0, 114 + offset3);
-        mMount3.cubicTo(30, 106 + offset3, 196, 97 + offset3, WIDTH, 104 + offset3);
-        mMount3.lineTo(WIDTH, HEIGHT);
-        mMount3.lineTo(0, HEIGHT);
-        mMount3.close();
-        mMount3.transform(mTransMatrix);
+//        int offset3 = (int) (30 * factor);
+//        mMount3.reset();
+//        mMount3.moveTo(0, 114 + offset3);
+//        mMount3.cubicTo(30, 106 + offset3, 196, 97 + offset3, WIDTH, 104 + offset3);
+//        mMount3.lineTo(WIDTH, HEIGHT);
+//        mMount3.lineTo(0, HEIGHT);
+//        mMount3.close();
+//        mMount3.transform(mTransMatrix);
     }
 
     private void updateTreePath(float factor, boolean force) {
@@ -239,15 +243,15 @@ public class MountanScenceView extends View implements IPullHeader {
                           int colorTrunk, int colorBranch) {
         canvas.save();
 
-        final float dx = baseX - TREE_WIDTH * scale / 2;
+        final float dx = baseX - TREE_WIDTH * scale/2 ;
         final float dy = baseY - TREE_HEIGHT * scale;
         canvas.translate(dx, dy);
         canvas.scale(scale, scale);
 
         mBranchPaint.setColor(colorBranch);
         canvas.drawPath(mBranch, mBranchPaint);
-        mTrunkPaint.setColor(colorTrunk);
-        canvas.drawPath(mTrunk, mTrunkPaint);
+//        mTrunkPaint.setColor(colorTrunk);
+//        canvas.drawPath(mTrunk, mTrunkPaint);
         mBoarderPaint.setColor(colorTrunk);
         canvas.drawPath(mBranch, mBoarderPaint);
 
@@ -260,28 +264,28 @@ public class MountanScenceView extends View implements IPullHeader {
         canvas.drawColor(COLOR_BACKGROUND);
 
         mMountPaint.setColor(COLOR_MOUNTAIN_1);
-        canvas.drawPath(mMount1, mMountPaint);
+//        canvas.drawPath(mMount1, mMountPaint);
 
         canvas.save();
         canvas.scale(-1, 1, getWidth() / 2, 0);
-        drawTree(canvas, 0.12f * mScaleX, 180 * mScaleX, (93 + 20 * mMoveFactor) * mScaleY,
-                COLOR_TREE_3_BTRUNK, COLOR_TREE_3_BRANCH);
-        drawTree(canvas, 0.1f * mScaleX, 200 * mScaleX, (96 + 20 * mMoveFactor) * mScaleY,
-                COLOR_TREE_3_BTRUNK, COLOR_TREE_3_BRANCH);
+//        drawTree(canvas, 0.1f * mScaleX, 200 * mScaleX, (96 + 20 * mMoveFactor) * mScaleY,
+//                COLOR_TREE_3_BTRUNK, COLOR_TREE_3_BRANCH);
         canvas.restore();
         mMountPaint.setColor(COLOR_MOUNTAIN_2);
         canvas.drawPath(mMount2, mMountPaint);
 
-        drawTree(canvas, 0.2f * mScaleX, 160 * mScaleX, (105 + 30 * mMoveFactor) * mScaleY,
-                COLOR_TREE_1_BTRUNK, COLOR_TREE_1_BRANCH);
-
-        drawTree(canvas, 0.14f * mScaleX, 180 * mScaleX, (105 + 30 * mMoveFactor) * mScaleY,
-                COLOR_TREE_2_BTRUNK ,COLOR_TREE_2_BRANCH);
-
-        drawTree(canvas, 0.16f * mScaleX, 140 * mScaleX, (105 + 30 * mMoveFactor) * mScaleY,
-                COLOR_TREE_2_BTRUNK ,COLOR_TREE_2_BRANCH);
-
-        mMountPaint.setColor(COLOR_MOUNTAIN_3);
-        canvas.drawPath(mMount3, mMountPaint);
+        drawTree(canvas, 0.5f * mScaleX, 180 * mScaleX, (93 + 20 * mMoveFactor) * mScaleY,
+                COLOR_TREE_3_BTRUNK, COLOR_TREE_3_BRANCH);
+//        drawTree(canvas, 0.2f * mScaleX, 160 * mScaleX, (105 + 30 * mMoveFactor) * mScaleY,
+//                COLOR_TREE_1_BTRUNK, COLOR_TREE_1_BRANCH);
+//
+//        drawTree(canvas, 0.14f * mScaleX, 180 * mScaleX, (105 + 30 * mMoveFactor) * mScaleY,
+//                COLOR_TREE_2_BTRUNK ,COLOR_TREE_2_BRANCH);
+//
+//        drawTree(canvas, 0.16f * mScaleX, 140 * mScaleX, (105 + 30 * mMoveFactor) * mScaleY,
+//                COLOR_TREE_2_BTRUNK ,COLOR_TREE_2_BRANCH);
+//
+//        mMountPaint.setColor(COLOR_MOUNTAIN_3);
+//        canvas.drawPath(mMount3, mMountPaint);
     }
 }
