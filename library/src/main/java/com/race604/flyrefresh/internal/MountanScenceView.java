@@ -114,6 +114,8 @@ public class MountanScenceView extends View implements IPullHeader {
 
         mTrunkPaint.setAntiAlias(true);
         mBranchPaint.setAntiAlias(true);
+
+        //画边框时的path画笔设置方法
         mBoarderPaint.setAntiAlias(true);
         mBoarderPaint.setStyle(Paint.Style.STROKE);
         mBoarderPaint.setStrokeWidth(2);
@@ -280,10 +282,16 @@ public class MountanScenceView extends View implements IPullHeader {
         canvas.scale(scale, scale);
 
         mBranchPaint.setColor(colorBranch);
+
+        //画树冠内部颜色
         canvas.drawPath(mBranch, mBranchPaint);
         mTrunkPaint.setColor(colorTrunk);
+
+        //画树干
         canvas.drawPath(mTrunk, mTrunkPaint);
         mBoarderPaint.setColor(colorTrunk);
+
+        //画树冠外面的边框
         canvas.drawPath(mBranch, mBoarderPaint);
 
         canvas.restore();
