@@ -15,9 +15,6 @@ import com.race604.flyrefresh.internal.MountanScenceView;
 import com.race604.flyrefresh.internal.SimpleAnimatorListener;
 import com.race604.utils.UIUtils;
 
-/**
- * Created by jing on 15-5-27.
- */
 public class FlyRefreshLayout extends PullHeaderLayout {
 
     private AnimatorSet mFlyAnimator = null;

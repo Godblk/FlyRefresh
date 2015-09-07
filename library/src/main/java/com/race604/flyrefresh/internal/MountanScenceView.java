@@ -141,7 +141,6 @@ public class MountanScenceView extends View implements IPullHeader {
         mMount1.transform(mTransMatrix);
 
         int offset2 = (int) (20 * factor);
-        int offset22 = (int) (60 * factor);
         mMount2.reset();
         mMount2.moveTo(0, 40 + offset2);
 
@@ -166,6 +165,11 @@ public class MountanScenceView extends View implements IPullHeader {
         mMount3.transform(mTransMatrix);
     }
 
+    /**
+     * 绘制树状图
+     * @param factor  树的顶端移动的距离，初始为0
+     * @param force 是否处于拉扯状态
+     */
     private void updateTreePath(float factor, boolean force) {
         if (factor == mTreeBendFactor && !force) {
             return;
@@ -177,6 +181,8 @@ public class MountanScenceView extends View implements IPullHeader {
         final float height = TREE_HEIGHT;
 
         final float maxMove = width * 0.3f * factor;
+
+        //使用与factor也就是移动的距离相关的树干宽度，使得在拉动时树干向左弯曲，树冠向右飘动
         final float trunkSize = width * 0.05f;
         final float branchSize = width * 0.2f;
         final float x0 = width / 2;
@@ -202,6 +208,8 @@ public class MountanScenceView extends View implements IPullHeader {
         int max = (int) (N * 0.7f);
         int max1 = (int) (max * 0.5f);
         float diff = max - max1;
+
+        //画左边的树干线，进行到一半的时候降幅降低，曲线趋于平滑
         for (int i = 0; i < max; i++) {
             if (i < max1) {
                 mTrunk.lineTo(xx[i] - trunkSize, yy[i]);
@@ -217,23 +225,28 @@ public class MountanScenceView extends View implements IPullHeader {
                 mTrunk.lineTo(xx[i] + trunkSize * (max - i) / diff, yy[i]);
             }
         }
+
+        //回到初始点成为封闭的曲线
         mTrunk.close();
 
         mBranch.reset();
         int min = (int) (N * 0.4f);
         diff = N - min;
 
+        //选定树冠的初始点
         mBranch.moveTo(xx[min] - branchSize, yy[min]);
+        //添加半圆不影响初始点的位置
         mBranch.addArc(new RectF(xx[min] - branchSize, yy[min] - branchSize, xx[min] + branchSize, yy[min] + branchSize), 0f, 180f);
         for (int i = min; i <= N; i++) {
+
+            //使用f * f * branchSize是为了改变树冠弯曲的角度
             float f = (i - min) / diff;
-            mBranch.lineTo(xx[i] - branchSize + f * f * branchSize, yy[i]);
+            mBranch.lineTo(xx[i] - branchSize + f *f * branchSize, yy[i]);
         }
         for (int i = N; i >= min; i--) {
             float f = (i - min) / diff;
-            mBranch.lineTo(xx[i] + branchSize - f * f * branchSize, yy[i]);
+            mBranch.lineTo(xx[i] + branchSize - f *f * branchSize, yy[i]);
         }
-
     }
 
     @Override
