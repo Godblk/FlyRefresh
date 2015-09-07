@@ -240,7 +240,7 @@ public class PullHeaderLayout extends ViewGroup {
             mContent = getChildAt(0);
         }
 
-        setActionDrawable(mActionDrawable);
+//        setActionDrawable(mActionDrawable);
 
         super.onFinishInflate();
     }
@@ -257,10 +257,10 @@ public class PullHeaderLayout extends ViewGroup {
             measureChildWithMargins(mContent, widthMeasureSpec, 0, heightMeasureSpec, mHeaderController.getMinHeight());
         }
 
-        if (mActionView != null) {
-            measureChild(mActionView, widthMeasureSpec, heightMeasureSpec);
-            measureChild(mFlyView, widthMeasureSpec, heightMeasureSpec);
-        }
+//        if (mActionView != null) {
+//            measureChild(mActionView, widthMeasureSpec, heightMeasureSpec);
+//            measureChild(mFlyView, widthMeasureSpec, heightMeasureSpec);
+//        }
     }
 
     @Override
@@ -291,19 +291,19 @@ public class PullHeaderLayout extends ViewGroup {
             mContent.layout(left, top, right, bottom);
         }
 
-        if (mActionView != null) {
-            final int center = ACTION_BUTTON_CENTER;
-            int halfWidth = (mActionView.getMeasuredWidth() + 1) / 2;
-            int halfHeight = (mActionView.getMeasuredHeight() + 1) / 2;
-
-            mActionView.layout(center - halfWidth , offsetY - halfHeight,
-                    center + halfWidth, offsetY + halfHeight);
-
-            halfWidth = (mFlyView.getMeasuredWidth() + 1) / 2;
-            halfHeight = (mFlyView.getMeasuredHeight() + 1) / 2;
-            mFlyView.layout(center - halfWidth, offsetY - halfHeight,
-                    center + halfWidth, offsetY + halfHeight);
-        }
+//        if (mActionView != null) {
+//            final int center = ACTION_BUTTON_CENTER;
+//            int halfWidth = (mActionView.getMeasuredWidth() + 1) / 2;
+//            int halfHeight = (mActionView.getMeasuredHeight() + 1) / 2;
+//
+//            mActionView.layout(center - halfWidth , offsetY - halfHeight,
+//                    center + halfWidth, offsetY + halfHeight);
+//
+//            halfWidth = (mFlyView.getMeasuredWidth() + 1) / 2;
+//            halfHeight = (mFlyView.getMeasuredHeight() + 1) / 2;
+//            mFlyView.layout(center - halfWidth, offsetY - halfHeight,
+//                    center + halfWidth, offsetY + halfHeight);
+//        }
 
     }
 
@@ -459,10 +459,10 @@ public class PullHeaderLayout extends ViewGroup {
             mContent.offsetTopAndBottom((int) delta);
         }
 
-        if (mActionView != null) {
-            mActionView.offsetTopAndBottom((int) delta);
-
-            mFlyView.offsetTopAndBottom((int) delta);
+//        if (mActionView != null) {
+//            mActionView.offsetTopAndBottom((int) delta);
+//
+//            mFlyView.offsetTopAndBottom((int) delta);
 
             float percentage = mHeaderController.getMovePercentage();
             onMoveHeader(mPullState, percentage);
@@ -475,7 +475,7 @@ public class PullHeaderLayout extends ViewGroup {
                 mPullListener.onPullProgress(this, mPullState, percentage);
             }
 
-        }
+//        }
 
     }
 
